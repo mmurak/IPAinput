@@ -112,7 +112,7 @@
     </head>
     <body>
         <input type="text" id="displayArea" spellcheck="false"><br/>
-        <input type="text" id="selectedChar" size="10" readonly spellcheck="false" onfocus="this.blur();"><br/>
+        <!-- input type="text" id="selectedChar" size="10" readonly spellcheck="false" onfocus="this.blur();"><br/-->
         <div id="firstLine">
             <input type="button" class="controls" value="V.&Supra." onclick="vsClick();">
             <input type="button" class="qcontrols" value="sp." onclick="blank();">
@@ -414,7 +414,7 @@
             class GlobalManager {
                 constructor() {
                     this.displayArea = document.getElementById("displayArea");
-                    this.selectedChar = document.getElementById("selectedChar");
+//                    this.selectedChar = document.getElementById("selectedChar");
                     this.vowelsAndSuprasegmentals = document.getElementById("VandSSection");
                     this.consonantsPulmonic = document.getElementById("CPulmonSection");
                     this.consonantsNonPulmonicAndOther = document.getElementById("CNPulmonAndOSection");
@@ -469,10 +469,10 @@
                 G.displayArea.focus();
             }
             function m(obj) {
-                G.selectedChar.value = obj.alt;
+//                G.selectedChar.value = obj.alt;
             }
             function mc() {
-                G.selectedChar.value = "";
+//                G.selectedChar.value = "";
             }
             function ss(obj) {
                 let selStart = G.displayArea.selectionStart;
