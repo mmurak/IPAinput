@@ -3,6 +3,7 @@
         <title>IPA</title>
         <link rel="shortcut icon" href="./Kiwi-bird-blue.png">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
         <style>
             #selectedChar {
                 display: inline;
@@ -72,23 +73,42 @@
                 font-size: 150%;
                 width: 100%;
             }
+            @media screen and (max-width: 480px) {
+                .controls {
+                    font-size: 200%;
+                }
+                .qcontrols {
+                    font-size: 200%;
+                }
+                .qcontrols2 {
+                    font-size: 200%;
+                }
+                #displayArea {
+                    font-size: 300%;
+                    width: 100%;
+                }
+                #VandSSection img {
+                    height: 30%;
+                }
+    
+}
         </style>
     </head>
     <body>
         <input type="text" id="displayArea" spellcheck="false"><br/>
         <input type="text" id="selectedChar" size="10" readonly spellcheck="false"><br/>
         <div id="firstLine">
-            <input type="button" class="controls" value="Vowels and Suprasegmentals" onclick="vsClick();">
+            <input type="button" class="controls" value="V.&Supra." onclick="vsClick();">
             <input type="button" class="qcontrols" value="Copy" onclick="copy2clipboard();">
             <input type="button" class="qcontrols2" value="Clear" onclick="displayClear();">
         </div>
         <div class="menu" id="secondLine">
-            <input type="button" class="controls" value="Consonants (Pulmonic)" onclick="cpClick();">
-            <input type="button" class="controls" value="Consonants (Non-Pulmonic), etc." onclick="cnpoClick();">
+            <input type="button" class="controls" value="C. (Pul)" onclick="cpClick();">
+            <input type="button" class="controls" value="C. (!Pul) etc." onclick="cnpoClick();">
         </div>
         <div class="menu" id="thirdLine">
-            <input type="button" class="controls" value="Diacritics" onclick="diaClick();">
-            <input type="button" class="controls" value="Tones and Accents" onclick="taClick();">
+            <input type="button" class="controls" value="Dia." onclick="diaClick();">
+            <input type="button" class="controls" value="T.&A." onclick="taClick();">
         </div>
         <br/>
         <div id="VandSSection">
