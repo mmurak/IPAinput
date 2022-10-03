@@ -1,0 +1,506 @@
+<html>
+    <head>
+        <title>IPA</title>
+        <link rel="shortcut icon" href="./Kiwi-bird-blue.png">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+        <style>
+            #selectedChar {
+                display: inline;
+                width: 100%;
+                border: none;
+                font-family: "TimesNewRoman", "Times New Roman";
+                font-size: 150%;
+                text-align: center;
+            }
+            #VandSSection {
+                display: none;
+            }
+            #CPulmonSection {
+                display: none;
+            }
+            #CNPulmonAndOSection {
+                display: none;
+            }
+            #DiacriticSection {
+                display: none;
+            }
+            #TandASection {
+                display: none;
+            }
+            #VandSSection img {
+                height: 45%;
+            }
+            #CPulmonSection img {
+                height: 35%;
+            }
+            #CNPulmonAndOSection img {
+                max-width: 100%;
+            }
+            #DiacriticSection img {
+                max-width: 100%;
+            }
+            .controls {
+                width: 48%;
+                alilgn: center;
+                background: #ccccff;
+                cursor: pointer;
+            }
+            .controls:active {
+                box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+                transform: translateY(2px);
+            }
+            .qcontrols {
+                width: 24%;
+                background: #ccffcc;
+                cursor: pointer;
+            }
+            .qcontrols:active {
+                box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+                transform: translateY(2px);
+            }
+            .qcontrols2 {
+                width: 24%;
+                background: #ffcccc;
+                cursor: pointer;
+            }
+            .qcontrols2:active {
+                box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+                transform: translateY(2px);
+            }
+            #displayArea {
+                font-family: "TimesNewRoman", "Times New Roman";
+                font-size: 150%;
+                width: 100%;
+            }
+            @media screen and (max-width: 959px) {
+                .controls {
+                    font-size: 200%;
+                }
+                .qcontrols {
+                    font-size: 200%;
+                }
+                .qcontrols2 {
+                    font-size: 200%;
+                }
+                #displayArea {
+                    font-size: 300%;
+                    width: 100%;
+                }
+                #VandSSection img {
+                    height: 45%;
+                }
+            @media screen and (max-width: 480px) {
+                .controls {
+                    font-size: 200%;
+                }
+                .qcontrols {
+                    font-size: 200%;
+                }
+                .qcontrols2 {
+                    font-size: 200%;
+                }
+                #displayArea {
+                    font-size: 300%;
+                    width: 100%;
+                }
+                #VandSSection img {
+                    height: 45%;
+                }
+}
+        </style>
+    </head>
+    <body>
+        <input type="text" id="displayArea" spellcheck="false"><br/>
+        <input type="text" id="selectedChar" size="10" readonly spellcheck="false" onfocus="this.blur();"><br/>
+        <div id="firstLine">
+            <input type="button" class="controls" value="V.&Supra." onclick="vsClick();">
+            <input type="button" class="qcontrols" value="sp." onclick="blank();">
+            <input type="button" class="qcontrols2" value="AC" onclick="allclear();">
+        </div>
+        <div class="menu" id="secondLine">
+            <input type="button" class="controls" value="C. (Pul)" onclick="cpClick();">
+            <input type="button" class="controls" value="C. (!Pul) etc." onclick="cnpoClick();">
+        </div>
+        <div class="menu" id="thirdLine">
+            <input type="button" class="controls" value="Dia." onclick="diaClick();">
+            <input type="button" class="controls" value="T.&A." onclick="taClick();">
+        </div>
+        <br/>
+        <div id="VandSSection">
+            <img src="./images/vowels.png" usemap="#VowelsMap" alt="Vowels" />
+            <map name="VowelsMap">
+                <area shape="rect" coords="104,73,134,113" href="javascript:ss('i');" alt="i" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="134,73,176,113" href="javascript:ss('y');" alt="y" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="276,72,311,113" href="javascript:ss('ɨ');" alt="ɨ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="311,73,350,113" href="javascript:ss('ʉ');" alt="ʉ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="440,72,487,116" href="javascript:ss('ɯ');" alt="ɯ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="488,71,533,116" href="javascript:ss('u');" alt="u" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="162,114,212,157" href="javascript:ss('ɪ');" alt="ɪ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="211,116,270,157" href="javascript:ss('Y');" alt="Y" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="381,116,469,161" href="javascript:ss('ʊ');" alt="ʊ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="145,160,197,204" href="javascript:ss('e');" alt="e" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="196,159,273,204" href="javascript:ss('ø');" alt="ø" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="281,158,339,204" href="javascript:ss('ɘ');" alt="ɘ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="338,160,404,201" href="javascript:ss('ɵ');" alt="ɵ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="416,161,486,203" href="javascript:ss('ɤ');" alt="ɤ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="488,161,539,204" href="javascript:ss('o');" alt="o" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="304,205,411,248" href="javascript:ss('ə');" alt="ə" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="191,246,252,295" href="javascript:ss('ɛ');" alt="ɛ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="253,246,315,296" href="javascript:ss('œ');" alt="œ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="316,248,370,297" href="javascript:ss('ɜ');" alt="ɜ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="371,248,426,297" href="javascript:ss('ɞ');" alt="ɞ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="433,248,486,297" href="javascript:ss('ʌ');" alt="ʌ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="489,248,538,298" href="javascript:ss('ɔ');" alt="ɔ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="213,298,315,341" href="javascript:ss('æ');" alt="æ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="336,299,438,341" href="javascript:ss('ɐ');" alt="ɐ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="241,342,313,385" href="javascript:ss('a');" alt="a" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="315,342,383,386" href="javascript:ss('ɶ');" alt="ɶ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="437,342,486,387" href="javascript:ss('ɑ');" alt="ɑ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="488,341,535,389" href="javascript:ss('ɒ');" alt="ɒ" onmouseover="m(this);" onmouseleave="mc();" />
+            </map>
+
+            <br/>
+
+            <img src="./images/sSeg.png" usemap="#SSegMap" alt="" />
+            <map name="SSegMap">
+                <area shape="rect" coords="7,33,192,69" href="javascript:ss('ˈ');" alt="ˈ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="195,47,326,84" href="javascript:ss('ˌfoʊnəˈtɪʃən');" alt="ˌfoʊnəˈtɪʃən" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="8,75,193,104" href="javascript:ss('ˌ');" alt="ˌ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="7,109,146,138" href="javascript:ss('ː');" alt="ː" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="152,108,209,140" href="javascript:ss('eː');" alt="eː" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="7,143,147,172" href="javascript:ss('ˑ');" alt="ˑ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="153,143,206,173" href="javascript:ss('eˑ');" alt="eˑ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="6,176,154,209" href="javascript:ss('̆');" alt="̆" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="157,176,205,211" href="javascript:ss('ĕ');" alt="ĕ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="7,213,218,249" href="javascript:ss('|');" alt="|" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="7,250,273,288" href="javascript:ss('‖');" alt="‖" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="7,291,189,320" href="javascript:ss('.');" alt="." onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="193,291,276,318" href="javascript:ss('ɹi.ækt');" alt="ɹi.ækt" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="9,327,299,357" href="javascript:ss('‿');" alt="‿" onmouseover="m(this);" onmouseleave="mc();" />
+            </map>
+        </div>
+
+        <div id="CPulmonSection">
+            <img src="./images/cPulmonL.jpg" usemap="#CPulmonLMap" alt="" />
+            <map name="CPulmonLMap">
+                <area shape="rect" coords="130,80,170,116" href="javascript:ss('p');" alt="p" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="171,77,212,118" href="javascript:ss('b');" alt="b" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="304,79,424,118" href="javascript:ss('t');" alt="t" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="425,80,554,117" href="javascript:ss('d');" alt="d" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="131,119,209,155" href="javascript:ss('m');" alt="m" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="213,117,305,154" href="javascript:ss('ɱ');" alt="ɱ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="306,118,552,157" href="javascript:ss('n');" alt="n" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="131,156,212,196" href="javascript:ss('ʙ');" alt="ʙ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="305,155,552,195" href="javascript:ss('r');" alt="r" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="212,196,306,232" href="javascript:ss('ⱱ');" alt="ⱱ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="306,196,553,232" href="javascript:ss('ɾ');" alt="ɾ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="132,233,169,270" href="javascript:ss('ɸ');" alt="ɸ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="169,235,212,271" href="javascript:ss('β');" alt="β" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="212,234,257,273" href="javascript:ss('f');" alt="f" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="258,234,304,273" href="javascript:ss('v');" alt="v" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="305,234,345,272" href="javascript:ss('θ');" alt="θ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="346,234,386,272" href="javascript:ss('ð');" alt="ð" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="387,231,425,272" href="javascript:ss('s');" alt="s" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="423,233,459,273" href="javascript:ss('z');" alt="z" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="460,235,506,271" href="javascript:ss('ʃ');" alt="ʃ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="507,234,552,271" href="javascript:ss('ʒ');" alt="ʒ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="305,273,418,311" href="javascript:ss('ɬ');" alt="ɬ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="420,271,553,312" href="javascript:ss('ɮ');" alt="ɮ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="209,309,305,350" href="javascript:ss('ʋ');" alt="ʋ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="306,311,555,347" href="javascript:ss('ɹ');" alt="ɹ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="305,349,554,389" href="javascript:ss('l');" alt="l" onmouseover="m(this);" onmouseleave="mc();" />
+            </map>
+
+            <br/>
+
+            <img src="./images/cPulmonR.jpg" usemap="#CPulmonRMap" alt="" />
+            <map name="CPulmonRMap">
+                <area shape="rect" coords="134,49,173,86" href="javascript:ss('ʈ');" alt="ʈ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="174,50,215,87" href="javascript:ss('ɖ');" alt="ɖ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="215,50,255,87" href="javascript:ss('c');" alt="c" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="255,50,297,87" href="javascript:ss('ɟ');" alt="ɟ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="297,50,338,86" href="javascript:ss('k');" alt="k" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="337,50,378,87" href="javascript:ss('ɡ');" alt="ɡ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="377,49,418,86" href="javascript:ss('q');" alt="q" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="416,49,458,88" href="javascript:ss('ɢ');" alt="ɢ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="551,49,593,87" href="javascript:ss('ʔ');" alt="ʔ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="135,88,215,127" href="javascript:ss('ɳ');" alt="ɳ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="216,88,296,126" href="javascript:ss('ɲ');" alt="ɲ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="296,88,378,127" href="javascript:ss('ŋ');" alt="ŋ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="378,88,458,126" href="javascript:ss('ɴ');" alt="ɴ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="377,126,458,166" href="javascript:ss('ʀ');" alt="ʀ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="135,164,216,203" href="javascript:ss('ɽ');" alt="ɽ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="135,204,175,240" href="javascript:ss('ʂ');" alt="ʂ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="176,203,216,242" href="javascript:ss('ʐ');" alt="ʐ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="215,204,256,243" href="javascript:ss('ç');" alt="ç" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="257,203,297,242" href="javascript:ss('ʝ');" alt="ʝ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="296,203,337,243" href="javascript:ss('x');" alt="x" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="337,202,377,242" href="javascript:ss('ɣ');" alt="ɣ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="376,203,418,243" href="javascript:ss('χ');" alt="χ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="419,203,458,242" href="javascript:ss('ʁ');" alt="ʁ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="458,203,506,242" href="javascript:ss('ħ');" alt="ħ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="506,203,552,242" href="javascript:ss('ʕ');" alt="ʕ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="551,203,594,242" href="javascript:ss('h');" alt="h" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="595,204,631,241" href="javascript:ss('ɦ');" alt="ɦ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="135,281,216,319" href="javascript:ss('ɻ');" alt="ɻ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="216,281,295,318" href="javascript:ss('j');" alt="j" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="297,281,377,319" href="javascript:ss('ɰ');" alt="ɰ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="135,319,216,359" href="javascript:ss('ɭ');" alt="ɭ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="216,319,297,359" href="javascript:ss('ʎ');" alt="ʎ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="296,319,378,359" href="javascript:ss('ʟ');" alt="ʟ" onmouseover="m(this);" onmouseleave="mc();" />
+            </map>
+
+        </div>
+
+        <div id="CNPulmonAndOSection">
+            <img src="./images/cNonPulmon.png" usemap="#CNPulmonMap" alt="" />
+            <map name="CNPulmonMap">
+                <area shape="rect" coords="18,77,185,113" href="javascript:ss('ʘ');" alt="ʘ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="187,78,352,113" href="javascript:ss('ɓ');" alt="ɓ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="358,78,525,114" href="javascript:ss('ʼ');" alt="ʼ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="18,115,185,152" href="javascript:ss('ǀ');" alt="ǀ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="188,115,354,152" href="javascript:ss('ɗ');" alt="ɗ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="357,115,524,151" href="javascript:ss('pʼ');" alt="pʼ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="18,154,185,192" href="javascript:ss('ǃ');" alt="ǃ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="189,154,357,193" href="javascript:ss('ʄ');" alt="ʄ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="357,156,527,192" href="javascript:ss('tʼ');" alt="tʼ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="17,192,186,231" href="javascript:ss('ǂ');" alt="ǂ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="187,193,353,230" href="javascript:ss('ɠ');" alt="ɠ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="358,194,522,228" href="javascript:ss('kʼ');" alt="kʼ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="17,232,185,267" href="javascript:ss('ǁ');" alt="ǁ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="190,232,357,268" href="javascript:ss('ʛ');" alt="ʛ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="358,231,524,267" href="javascript:ss('sʼ');" alt="sʼ" onmouseover="m(this);" onmouseleave="mc();" />
+            </map>
+
+            <br/>
+
+            <img src="./images/oSyms.png" usemap="#OsymMap" alt="" />
+            <map name="OsymMap">
+                <area shape="rect" coords="7,38,265,66" href="javascript:ss('ʍ');" alt="ʍ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="280,40,303,66" href="javascript:ss('ɕ');" alt="ɕ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="305,40,327,68" href="javascript:ss('ʑ');" alt="ʑ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="7,73,268,103" href="javascript:ss('w');" alt="w" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="289,68,519,105" href="javascript:ss('ɺ');" alt="ɺ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="9,111,273,144" href="javascript:ss('ɥ');" alt="ɥ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="280,105,423,143" href="javascript:ss('ɧ');" alt="ɧ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="423,103,449,147" href="javascript:ss('ʃ');" alt="ʃ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="483,102,509,145" href="javascript:ss('x');" alt="x" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="8,148,260,177" href="javascript:ss('ʜ');" alt="ʜ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="9,179,260,213" href="javascript:ss('ʢ');" alt="ʢ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="9,213,194,248" href="javascript:ss('ʡ');" alt="ʡ" onmouseover="m(this);" onmouseleave="mc();" />
+            </map>
+
+        </div>
+
+        <div id="DiacriticSection">
+            <img src="./images/dia.png" usemap="#DiacriticsMap" alt="" />
+            <map name="DiacriticsMap">
+                <area shape="rect" coords="642,3,673,42" href="javascript:ss('ŋ̊');" alt="ŋ̊" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="21,42,159,81" href="javascript:ss('̥');" alt="̥" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="168,44,205,80" href="javascript:ss('n̥');" alt="n̥" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="208,44,236,82" href="javascript:ss('d̥');" alt="d̥" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="249,46,399,79" href="javascript:ss('̤');" alt="̤" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="405,44,439,79" href="javascript:ss('b̤');" alt="b̤" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="446,44,482,79" href="javascript:ss('a̤');" alt="a̤" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="497,45,615,79" href="javascript:ss('̪');" alt="̪" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="636,46,674,79" href="javascript:ss('t̪');" alt="t̪" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="677,45,709,80" href="javascript:ss('d̪');" alt="d̪" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="22,84,160,119" href="javascript:ss('̬');" alt="̬" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="167,85,202,118" href="javascript:ss('s̬');" alt="s̬" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="208,86,236,118" href="javascript:ss('t̬');" alt="t̬" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="249,83,396,117" href="javascript:ss('̰');" alt="̰" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="403,82,436,118" href="javascript:ss('b̰');" alt="b̰" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="448,84,481,117" href="javascript:ss('a̰');" alt="a̰" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="497,83,615,118" href="javascript:ss('̺');" alt="̺" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="636,84,672,117" href="javascript:ss('t̺');" alt="t̺" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="676,84,708,117" href="javascript:ss('d̺');" alt="d̺" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="22,120,157,155" href="javascript:ss('ʰ');" alt="ʰ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="169,120,208,154" href="javascript:ss('tʰ');" alt="tʰ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="209,121,243,153" href="javascript:ss('dʰ');" alt="dʰ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="251,122,397,155" href="javascript:ss('̼');" alt="̼" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="403,122,439,157" href="javascript:ss('t̼');" alt="t̼" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="448,122,482,157" href="javascript:ss('d̼');" alt="d̼" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="498,122,614,157" href="javascript:ss('̻');" alt="̻" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="639,121,672,158" href="javascript:ss('t̻');" alt="t̻" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="677,120,703,158" href="javascript:ss('d̻');" alt="d̻" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="23,159,161,197" href="javascript:ss('̹');" alt="̹" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="168,162,207,195" href="javascript:ss('ɔ̹');" alt="ɔ̹" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="251,161,397,194" href="javascript:ss('ʷ');" alt="ʷ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="402,162,446,194" href="javascript:ss('tʷ');" alt="tʷ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="449,161,490,194" href="javascript:ss('dʷ');" alt="dʷ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="498,161,619,195" href="javascript:ss('̃');" alt="̃" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="665,161,714,194" href="javascript:ss('ẽ');" alt="ẽ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="22,199,157,235" href="javascript:ss('̜');" alt="̜" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="169,200,206,234" href="javascript:ss('ɔ̜');" alt="ɔ̜" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="250,197,397,233" href="javascript:ss('ʲ');" alt="ʲ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="403,197,445,232" href="javascript:ss('tʲ');" alt="tʲ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="453,198,492,233" href="javascript:ss('dʲ');" alt="dʲ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="499,200,626,233" href="javascript:ss('ⁿ');" alt="ⁿ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="674,198,714,233" href="javascript:ss('dⁿ');" alt=dⁿ onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="22,239,158,273" href="javascript:ss('̟');" alt="̟" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="169,239,210,271" href="javascript:ss('u̟');" alt="u̟" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="250,236,395,271" href="javascript:ss('ˠ');" alt="ˠ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="402,237,446,273" href="javascript:ss('tˠ');" alt="tˠ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="452,238,491,272" href="javascript:ss('dˠ');" alt="dˠ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="496,236,639,272" href="javascript:ss('ˡ');" alt="ˡ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="670,237,715,272" href="javascript:ss('dˡ');" alt="dˡ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="22,275,156,310" href="javascript:ss('̠');" alt="̠" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="167,277,211,311" href="javascript:ss('e̠');" alt="e̠" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="250,275,396,310" href="javascript:ss('ˤ');" alt="ˤ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="403,276,446,310" href="javascript:ss('tˤ');" alt="tˤ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="451,275,491,311" href="javascript:ss('dˤ');" alt="dˤ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="496,276,665,311" href="javascript:ss('̚');" alt="̚" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="673,275,713,312" href="javascript:ss('d̚');" alt="d̚" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="22,315,156,349" href="javascript:ss('̈');" alt="̈" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="169,315,209,348" href="javascript:ss('ë');" alt="ë" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="250,314,487,348" href="javascript:ss('&#x334;');" alt="&#x334;" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="495,314,532,347" href="javascript:ss('ɫ');" alt="ɫ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="22,353,164,389" href="javascript:ss('̽');" alt="̽" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="168,353,210,389" href="javascript:ss('e̽');" alt="e̽" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="250,353,381,390" href="javascript:ss('̝');" alt="̝" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="398,354,441,390" href="javascript:ss('e̝');" alt="e̝" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="450,353,478,390" href="javascript:ss('ɹ̝');" alt="ɹ̝" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="21,392,152,429" href="javascript:ss('̩');" alt="̩" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="166,394,210,428" href="javascript:ss('n̩');" alt="n̩" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="251,392,365,431" href="javascript:ss('̞');" alt="̞" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="404,393,438,428" href="javascript:ss('e̞');" alt="e̞" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="451,391,475,429" href="javascript:ss('β̞');" alt="β̞" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="22,433,153,467" href="javascript:ss('̯');" alt="̯" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="167,432,208,466" href="javascript:ss('e̯');" alt="e̯" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="250,432,445,468" href="javascript:ss('̘');" alt="̘" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="447,432,484,467" href="javascript:ss('e̘');" alt="e̘" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="21,469,152,506" href="javascript:ss('˞');" alt="˞" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="172,468,205,507" href="javascript:ss('ɚ');" alt="ɚ" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="209,469,243,506" href="javascript:ss('a˞');" alt="a˞" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="251,469,447,505" href="javascript:ss('̙');" alt="̙" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="448,469,482,507" href="javascript:ss('e̙');" alt="e̙" onmouseover="m(this);" onmouseleave="mc();" />
+            </map>
+        </div>
+
+        <div id="TandASection">
+            <img src="./images/tAndA.png" usemap="#TandAMap" alt="" />
+            <map name="TandAMap">
+                <area shape="rect" coords="17,56,51,93" href="javascript:ss('̋');" alt="̋" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="67,56,98,93" href="javascript:ss('˥');" alt="˥" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="169,59,202,93" href="javascript:ss('̌');" alt="̌" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="220,60,251,90" href="javascript:ss('˩˥');" alt="˩˥" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="18,95,49,124" href="javascript:ss('́');" alt="́" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="66,95,96,123" href="javascript:ss('˦');" alt="˦" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="168,95,203,125" href="javascript:ss('̂');" alt="̂" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="219,92,250,124" href="javascript:ss('˥˩');" alt="˥˩" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="17,128,51,158" href="javascript:ss('̄');" alt="̄" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="67,128,95,159" href="javascript:ss('˧');" alt="˧" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="169,127,204,156" href="javascript:ss('᷄');" alt="᷄" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="219,128,248,157" href="javascript:ss('˦˥');" alt="˦˥" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="17,161,53,189" href="javascript:ss('̀');" alt="̀" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="66,161,94,190" href="javascript:ss('˨');" alt="˨" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="169,159,204,190" href="javascript:ss('᷅');" alt="᷅" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="219,161,248,190" href="javascript:ss('˩˨');" alt="˩˨" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="18,191,49,223" href="javascript:ss('̏');" alt="̏" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="65,193,94,222" href="javascript:ss('˩');" alt="˩" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="170,191,206,223" href="javascript:ss('᷈');" alt="᷈" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="219,193,248,224" href="javascript:ss('˧˦˧');" alt="˧˦˧" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="22,224,126,253" href="javascript:ss('↓');" alt="↓" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="170,226,291,257" href="javascript:ss('↗');" alt="↗" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="24,255,125,286" href="javascript:ss('↑');" alt="↑" onmouseover="m(this);" onmouseleave="mc();" />
+                <area shape="rect" coords="170,258,291,286" href="javascript:ss('↘');" alt="↘" onmouseover="m(this);" onmouseleave="mc();" />
+            </map>
+        </div>
+
+        <script src="./imageMapResizer.min.js"></script>
+
+        <script>
+            class GlobalManager {
+                constructor() {
+                    this.displayArea = document.getElementById("displayArea");
+                    this.selectedChar = document.getElementById("selectedChar");
+                    this.vowelsAndSuprasegmentals = document.getElementById("VandSSection");
+                    this.consonantsPulmonic = document.getElementById("CPulmonSection");
+                    this.consonantsNonPulmonicAndOther = document.getElementById("CNPulmonAndOSection");
+                    this.diacritics = document.getElementById("DiacriticSection");
+                    this.tonesAndAccents = document.getElementById("TandASection");
+                }
+            }
+            let G = new GlobalManager();
+            G.displayArea.focus();
+            G.displayArea.addEventListener("input", function() {
+                autoCopy();
+//                G.displayArea.blur();
+            });
+            document.addEventListener("keydown", function(evt) {
+//                G.displayArea.focus();
+            });
+            function allVanish() {
+                G.vowelsAndSuprasegmentals.style.display = "none";
+                G.consonantsPulmonic.style.display = "none";
+                G.consonantsNonPulmonicAndOther.style.display = "none";
+                G.diacritics.style.display = "none";
+                G.tonesAndAccents.style.display = "none";
+            }
+            function vsClick() {
+                allVanish();
+                G.vowelsAndSuprasegmentals.style.display = "block";
+                imageMapResize();
+                G.displayArea.focus();
+            }
+            function cpClick() {
+                allVanish();
+                G.consonantsPulmonic.style.display = "block";
+                imageMapResize();
+                G.displayArea.focus();
+            }
+            function cnpoClick() {
+                allVanish();
+                G.consonantsNonPulmonicAndOther.style.display = "block";
+                imageMapResize();
+                G.displayArea.focus();
+            }
+            function diaClick() {
+                allVanish();
+                G.diacritics.style.display = "block";
+                imageMapResize();
+                G.displayArea.focus();
+            }
+            function taClick() {
+                allVanish();
+                G.tonesAndAccents.style.display = "block";
+                imageMapResize();
+                G.displayArea.focus();
+            }
+            function m(obj) {
+                G.selectedChar.value = obj.alt;
+            }
+            function mc() {
+                G.selectedChar.value = "";
+            }
+            function ss(obj) {
+                let selStart = G.displayArea.selectionStart;
+                let selEnd = G.displayArea.selectionEnd;
+                let data = G.displayArea.value;
+                G.displayArea.value = data.substring(0, selStart) + obj + data.substring(selEnd);
+                G.displayArea.selectionStart = G.displayArea.selectionEnd = selStart + obj.length;
+                autoCopy();
+//                G.displayArea.blur();
+                G.displayArea.focus();
+            }
+            function allclear() {
+                G.displayArea.value = "";
+                autoCopy();
+//                G.displayArea.blur();
+            }
+            function blank() {
+                ss(" ");
+            }
+            function autoCopy() {
+                let saveStart = G.displayArea.selectionStart;
+                let saveEnd = G.displayArea.selectionEnd;
+                G.displayArea.select();
+                document.execCommand("copy");
+                G.displayArea.selectionStart = saveStart;
+                G.displayArea.selectionEnd = saveEnd;
+            }
+        </script>
+
+    </body>
+<html>
