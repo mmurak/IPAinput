@@ -115,8 +115,8 @@
         <input type="text" id="selectedChar" size="10" readonly spellcheck="false"><br/>
         <div id="firstLine">
             <input type="button" class="controls" value="V.&Supra." onclick="vsClick();">
-            <input type="button" class="qcontrols" value="SPACE" onclick="blank();">
-            <input type="button" class="qcontrols2" value="AC" onclick="displayClear();">
+            <input type="button" class="qcontrols" value="sp." onclick="blank();">
+            <input type="button" class="qcontrols2" value="AC" onclick="allclear();">
         </div>
         <div class="menu" id="secondLine">
             <input type="button" class="controls" value="C. (Pul)" onclick="cpClick();">
@@ -459,20 +459,28 @@
                 G.selectedChar.value = "";
             }
             function ss(obj) {
-                G.displayArea.value += obj;
+                let selStart = G.displayArea.selectionStart;
+                let selEnd = G.displayArea.selectionEnd;
+                let data = G.displayArea.value;
+                G.displayArea.value = data.substring(0, selStart) + obj + data.substring(selEnd);
+                G.displayArea.selectionStart = G.displayArea.selectionEnd = selStart + obj.length;
                 autoCopy();
-            }
-            function displayClear() {
-                G.displayArea.value = "";
                 G.displayArea.blur();
+            }
+            function allclear() {
+                G.displayArea.value = "";
+                autoCopy();
             }
             function blank() {
                 ss(" ");
             }
             function autoCopy() {
+                let saveStart = G.displayArea.selectionStart;
+                let saveEnd = G.displayArea.selectionEnd;
                 G.displayArea.select();
                 document.execCommand("copy");
-                G.displayArea.blur();
+                G.displayArea.selectionStart = saveStart;
+                G.displayArea.selectionEnd = saveEnd;
             }
         </script>
 
