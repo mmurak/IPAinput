@@ -416,12 +416,13 @@
                 }
             }
             let G = new GlobalManager();
+            G.displayArea.focus();
             G.displayArea.addEventListener("input", function() {
                 autoCopy();
-                G.displayArea.blur();
+//                G.displayArea.blur();
             });
             document.addEventListener("keydown", function(evt) {
-                G.displayArea.focus();
+//                G.displayArea.focus();
             });
             function allVanish() {
                 G.vowelsAndSuprasegmentals.style.display = "none";
@@ -434,26 +435,31 @@
                 allVanish();
                 G.vowelsAndSuprasegmentals.style.display = "block";
                 imageMapResize();
+                G.displayArea.focus();
             }
             function cpClick() {
                 allVanish();
                 G.consonantsPulmonic.style.display = "block";
                 imageMapResize();
+                G.displayArea.focus();
             }
             function cnpoClick() {
                 allVanish();
                 G.consonantsNonPulmonicAndOther.style.display = "block";
                 imageMapResize();
+                G.displayArea.focus();
             }
             function diaClick() {
                 allVanish();
                 G.diacritics.style.display = "block";
                 imageMapResize();
+                G.displayArea.focus();
             }
             function taClick() {
                 allVanish();
                 G.tonesAndAccents.style.display = "block";
                 imageMapResize();
+                G.displayArea.focus();
             }
             function m(obj) {
                 G.selectedChar.value = obj.alt;
@@ -468,12 +474,13 @@
                 G.displayArea.value = data.substring(0, selStart) + obj + data.substring(selEnd);
                 G.displayArea.selectionStart = G.displayArea.selectionEnd = selStart + obj.length;
                 autoCopy();
-                G.displayArea.blur();
+//                G.displayArea.blur();
+                G.displayArea.focus();
             }
             function allclear() {
                 G.displayArea.value = "";
                 autoCopy();
-                G.displayArea.blur();
+//                G.displayArea.blur();
             }
             function blank() {
                 ss(" ");
