@@ -112,7 +112,7 @@
     </head>
     <body>
         <input type="text" id="displayArea" spellcheck="false"><br/>
-        <input type="text" id="selectedChar" size="10" readonly spellcheck="false"><br/>
+        <input type="text" id="selectedChar" size="10" readonly spellcheck="false" onfocus="this.blur();"><br/>
         <div id="firstLine">
             <input type="button" class="controls" value="V.&Supra." onclick="vsClick();">
             <input type="button" class="qcontrols" value="sp." onclick="blank();">
@@ -416,9 +416,12 @@
                 }
             }
             let G = new GlobalManager();
-            G.displayArea.focus();
             G.displayArea.addEventListener("input", function() {
                 autoCopy();
+                G.displayArea.blur();
+            });
+            document.addEventListener("keydown", function(evt) {
+                G.displayArea.focus();
             });
             function allVanish() {
                 G.vowelsAndSuprasegmentals.style.display = "none";
@@ -470,6 +473,7 @@
             function allclear() {
                 G.displayArea.value = "";
                 autoCopy();
+                G.displayArea.blur();
             }
             function blank() {
                 ss(" ");
