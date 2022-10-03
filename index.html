@@ -115,8 +115,8 @@
         <input type="text" id="selectedChar" size="10" readonly spellcheck="false"><br/>
         <div id="firstLine">
             <input type="button" class="controls" value="V.&Supra." onclick="vsClick();">
-            <input type="button" class="qcontrols" value="Copy" onclick="copy2clipboard();">
-            <input type="button" class="qcontrols2" value="Clear" onclick="displayClear();">
+            <input type="button" class="qcontrols" value="SPACE" onclick="blank();">
+            <input type="button" class="qcontrols2" value="AC" onclick="displayClear();">
         </div>
         <div class="menu" id="secondLine">
             <input type="button" class="controls" value="C. (Pul)" onclick="cpClick();">
@@ -417,6 +417,9 @@
             }
             let G = new GlobalManager();
             G.displayArea.focus();
+            G.displayArea.addEventListener("input", function() {
+                autoCopy();
+            });
             function allVanish() {
                 G.vowelsAndSuprasegmentals.style.display = "none";
                 G.consonantsPulmonic.style.display = "none";
@@ -457,16 +460,19 @@
             }
             function ss(obj) {
                 G.displayArea.value += obj;
-//                G.displayArea.focus();
+                autoCopy();
             }
             function displayClear() {
                 G.displayArea.value = "";
-                G.displayArea.focus();
+                G.displayArea.blur();
             }
-            function copy2clipboard() {
+            function blank() {
+                ss(" ");
+            }
+            function autoCopy() {
                 G.displayArea.select();
                 document.execCommand("copy");
-//                G.displayArea.focus();
+                G.displayArea.blur();
             }
         </script>
 
