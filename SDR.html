@@ -20,7 +20,7 @@
         </style>
     </head>
     <body>
-        <canvas id="canvas" width="300" height="300"></canvas>
+        <canvas id="canvas" width="400" height="400"></canvas>
         <br/>
         <input type="button" id="rollbackButton" disabled value="Rollback" onclick="rollbackStroke();">
         <input type="button" id="clearButton" value="Clear" onclick="clearCanvas();">
@@ -88,7 +88,7 @@
             G.ctx.beginPath();
             G.isDrag = true;
             G.strokePath = [];
-            G.strokePath.push(whichQuadrant(fixedX(evt), fixedY(evt)));
+            G.strokePath.push(whichQuadrant(evt.changedTouches[0].pageX, evt.changedTouches[0].pageY));
             draw(fixedX(evt), fixedY(evt));
         }
         function touchEnd(evt) {
@@ -97,7 +97,6 @@
             G.lastX = null;
             G.lastY = null;
             G.aggregatedArea.push(regulariseStroke(G.strokePath.join("") + ":"));
-        alert(regulariseStroke(G.strokePath.join("") + ":"));
             let candidates = G.engine.getCandidates(G.aggregatedArea.join(""));
             candidates.pop();
             displayCandidates(candidates);
