@@ -20,7 +20,7 @@
         </style>
     </head>
     <body>
-        <canvas id="canvas" width="400" height="400"></canvas>
+        <canvas id="canvas" width="300" height="300"></canvas>
         <br/>
         <input type="button" id="rollbackButton" disabled value="Rollback" onclick="rollbackStroke();">
         <input type="button" id="clearButton" value="Clear" onclick="clearCanvas();">
@@ -88,8 +88,10 @@
             G.ctx.beginPath();
             G.isDrag = true;
             G.strokePath = [];
-            G.strokePath.push(whichQuadrant(evt.changedTouches[0].pageX, evt.changedTouches[0].pageY));
-            draw(fixedX(evt), fixedY(evt));
+            let touchX = evt.changedTouches[0].pageX - G.canvas.getBoundingClientRect().left;
+            let touchY = evt.changedTouches[0].pageY - G.canvas.getBoundingClientRect().top;
+            G.strokePath.push(whichQuadrant(touchX, touchY));
+            draw(touchX, touchY);
         }
         function touchEnd(evt) {
             G.ctx.closePath();
@@ -102,8 +104,8 @@
             displayCandidates(candidates);
         }
         function touchMove(evt) {
-            let x = evt.changedTouches[0].pageX;
-            let y = evt.changedTouches[0].pageY;
+            let x = evt.changedTouches[0].pageX - G.canvas.getBoundingClientRect().left;
+            let y = evt.changedTouches[0].pageY - G.canvas.getBoundingClientRect().top;
             draw(x, y);
         }
 
@@ -196,6 +198,7 @@
             G.ctx.clearRect(0, 0, G.w, G.h);
             drawCrossHairs();
             clearPaths();
+            displayCandidates([]);
         }
         function rollbackStroke() {
             if (G.imageArray.length > 0) {
