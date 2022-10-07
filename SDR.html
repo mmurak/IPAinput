@@ -97,6 +97,7 @@
             G.lastX = null;
             G.lastY = null;
             G.aggregatedArea.push(regulariseStroke(G.strokePath.join("") + ":"));
+        alert(regulariseStroke(G.strokePath.join("") + ":"));
             let candidates = G.engine.getCandidates(G.aggregatedArea.join(""));
             candidates.pop();
             displayCandidates(candidates);
